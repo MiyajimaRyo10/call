@@ -14,7 +14,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* ✨ 上揃えに変更 */
+            justify-content: flex-start;
         }
         .caller-info .account-type { font-size: 16px; opacity: 0.8; }
         .caller-info h1 { font-size: 28px; font-weight: 600; margin-top: 8px; }
@@ -57,7 +57,6 @@
             </div>
         </div>
     </div>
-
     <div id="active-call-screen" class="screen" style="display: none;">
         <div class="profile-area">
             <div class="profile-pic"><img src="profile.jpg" alt="プロフィール画像"></div>
@@ -70,18 +69,15 @@
             <div class="control-button"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg><span>スピーカーをオン</span></div>
         </div>
     </div>
-
     <div id="call-ended-screen" class="screen" style="display: none;">
         <div class="end-message">
             <h1>通話が終了しました</h1>
         </div>
     </div>
-
     <audio id="ringtone-audio" src="ringtone.mp3" loop preload="auto"></audio>
     <audio id="call-audio" src="call_audio.mp3" preload="auto"></audio>
 
     <script>
-        // JavaScriptコードは変更ありません
         const incomingCallScreen = document.getElementById('incoming-call-screen');
         const activeCallScreen = document.getElementById('active-call-screen');
         const callEndedScreen = document.getElementById('call-ended-screen');
@@ -111,6 +107,7 @@
         };
 
         answerButton.addEventListener('click', () => {
+            ringtoneAudio.muted = true; // ✨ より確実に音を消すためにミュート処理を追加
             ringtoneAudio.pause();
             ringtoneAudio.currentTime = 0;
             incomingCallScreen.style.display = 'none';
